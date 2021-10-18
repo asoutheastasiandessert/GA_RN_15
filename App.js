@@ -153,8 +153,14 @@ export default function App() {
             </View>
 
             <View style={{marginLeft: 10}}>
-              <Text style={{color: '#fff', fontSize: 20, fontWeight: 'bold'}}>
-                Dont Ario Rafly
+              <Text
+                style={{
+                  color: '#fff',
+                  fontSize: 20,
+                  // fontWeight: 'bold',
+                  fontFamily: 'Beautiful',
+                }}>
+                Rangga Yudhistira Pratama
               </Text>
               <Text style={{color: '#fff'}}>Tap to see your Gojek profile</Text>
             </View>
@@ -333,7 +339,8 @@ export default function App() {
             justifyContent: 'space-between',
           }}>
           <View>
-            <Text style={{color: 'black', fontWeight: 'bold', fontSize: 18}}>
+            <Text
+              style={{color: 'black', fontFamily: 'Afterglow', fontSize: 18}}>
               GoPay friends
             </Text>
             <Text style={{fontSize: 12}}>
