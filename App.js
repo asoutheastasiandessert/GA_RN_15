@@ -208,7 +208,7 @@ export default function App() {
             <FontAwesome name="plus-square" size={25} color="#fff" />
           </View>
           <Text style={{fontWeight: 'bold', color: '#000', fontSize: 15}}>
-            Top up
+            Top up!
           </Text>
         </View>
         <View style={{alignItems: 'center'}}>
