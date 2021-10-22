@@ -75,6 +75,8 @@
 		9692F3F49DF74F0D9B96B134 /* Afterglow.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2A9AC491C213440480BAD613 /* Afterglow.ttf */; };
 		3CCF885032514264B63C6C76 /* Beautiful.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4ACE9DA83EB046998A3177FE /* Beautiful.ttf */; };
 		4DD29CB1E15F4FEA8DD74B99 /* Camello.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3422FFEFA6474C949361DE98 /* Camello.otf */; };
+		6A1A1FF333F7451AB52AC27B /* BLOBBER.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4FAA1DBBF3394E7EB758CA9D /* BLOBBER.ttf */; };
+		9830221C8F314FD1806E8C06 /* Fabled.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6AF47112B040461985C1D067 /* Fabled.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -162,6 +164,8 @@
 		2A9AC491C213440480BAD613 /* Afterglow.ttf */ = {isa = PBXFileReference; name = "Afterglow.ttf"; path = "../Afterglow.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		4ACE9DA83EB046998A3177FE /* Beautiful.ttf */ = {isa = PBXFileReference; name = "Beautiful.ttf"; path = "../android/app/build/intermediates/merged_assets/debug/out/fonts/Beautiful.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		3422FFEFA6474C949361DE98 /* Camello.otf */ = {isa = PBXFileReference; name = "Camello.otf"; path = "../Camello.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		4FAA1DBBF3394E7EB758CA9D /* BLOBBER.ttf */ = {isa = PBXFileReference; name = "BLOBBER.ttf"; path = "../fonts/BLOBBER.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		6AF47112B040461985C1D067 /* Fabled.otf */ = {isa = PBXFileReference; name = "Fabled.otf"; path = "../fonts/Fabled.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -317,6 +321,8 @@
 				2A9AC491C213440480BAD613 /* Afterglow.ttf */,
 				4ACE9DA83EB046998A3177FE /* Beautiful.ttf */,
 				3422FFEFA6474C949361DE98 /* Camello.otf */,
+				4FAA1DBBF3394E7EB758CA9D /* BLOBBER.ttf */,
+				6AF47112B040461985C1D067 /* Fabled.otf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -475,6 +481,8 @@
 				9692F3F49DF74F0D9B96B134 /* Afterglow.ttf in Resources */,
 				3CCF885032514264B63C6C76 /* Beautiful.ttf in Resources */,
 				4DD29CB1E15F4FEA8DD74B99 /* Camello.otf in Resources */,
+				6A1A1FF333F7451AB52AC27B /* BLOBBER.ttf in Resources */,
+				9830221C8F314FD1806E8C06 /* Fabled.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
