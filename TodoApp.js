@@ -17,6 +17,7 @@ export default function TodoApp() {
       <FlatList
         data={title}
         numColumns={2}
+        columnWrapperStyle={{flex: 1, justifyContent: 'space-around'}}
         renderItem={({item, index}) => {
           return (
             <Card

@@ -2,13 +2,16 @@ import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 
 //destruction object
+
+const color = ['red', 'blue', 'green'];
 export default function Card({data, deleteTodo}) {
   return (
     <View
       style={{
         backgroundColor: 'blue',
         height: 40,
-        flex: 1,
+        // width: '40%',
+        flex: 0.5,
         margin: 10,
         flexDirection: 'row',
         borderWidth: 2,
