@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import {View, Text, TouchableOpacity, TextInput} from 'react-native';
+import {View, Text, TouchableOpacity, TextInput, FlatList} from 'react-native';
+import Card from './Card';
 
 export default function TodoApp() {
   const [title, setTitle] = useState([
@@ -9,31 +10,29 @@ export default function TodoApp() {
     'React', //3
     'Native', //4
   ]);
-  const [ketikan, setKetikan] = useState('');
+  const [ketikan, setKetikan] = useState('Glints');
 
   return (
     <View>
-      {title.map((e, i) => {
-        return (
-          <View key={i} style={{flexDirection: 'row'}}>
-            <Text
-              style={{color: 'orange', fontSize: 34, fontFamily: 'BLOBBER'}}>
-              {e}
-            </Text>
-            <TouchableOpacity
-              onPress={() => {
-                const qwe = title.filter((item, index) => index !== i);
+      <FlatList
+        data={title}
+        numColumns={2}
+        renderItem={({item, index}) => {
+          return (
+            <Card
+              data={item}
+              deleteTodo={() => {
+                const qwe = title.filter((item, i) => index !== i);
                 setTitle(qwe);
-              }}>
-              <Text>Delete</Text>
-            </TouchableOpacity>
-          </View>
-        );
-      })}
+              }}
+            />
+          );
+        }}
+        keyExtractor={(item, i) => i}
+      />
       <TextInput
         style={{color: 'green'}}
         placeholder="asdasd"
-        placeholderTextColor="red"
         value={ketikan}
         onChangeText={e => {
           setKetikan(e);
@@ -45,7 +44,7 @@ export default function TodoApp() {
           asd.push(ketikan);
           setTitle(asd);
         }}>
-        <Text style={{fontFamily: 'Fabled', fontSize: 24}}>Submit</Text>
+        <Text style={{fontSize: 24}}>Submit</Text>
       </TouchableOpacity>
     </View>
   );
