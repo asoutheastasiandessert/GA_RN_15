@@ -52,12 +52,12 @@ function ridingBus(arrPassenger) {
   return newPassenger;
 }
 
-console.log(
-  ridingBus([
-    ['Lita', 'B', 'F'],
-    ['Icha', 'A', 'B'],
-  ]),
-);
+// console.log(
+//   ridingBus([
+//     ['Lita', 'B', 'F'],
+//     ['Icha', 'A', 'B'],
+//   ]),
+// );
 // output
 //   [ { passenger: 'Lita', from: 'B', to: 'F', pay: 8000 },
 //     { passenger: 'Icha', from: 'A', to: 'B', pay: 2000 } ]
@@ -65,3 +65,13 @@ console.log(
 // console.log(ridingBus([]));
 // output
 //   []
+
+let n = 1;
+let n1 = 22;
+for (let x = n; x <= n1; x++) {
+  if (x === 0) {
+    console.log(x + '');
+  } else if (x % 2 === 0) {
+    console.log(x + '\n');
+  }
+}

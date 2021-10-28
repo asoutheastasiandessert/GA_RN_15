@@ -8,5 +8,6 @@ import Test from './Test';
 import Glints from './Glints';
 import {name as appName} from './app.json';
 import TodoApp from './TodoApp';
+import Main from './Main';
 
 AppRegistry.registerComponent(appName, () => TodoApp);
