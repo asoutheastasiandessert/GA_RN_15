@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 
-export default function SignIn() {
+export default function SignIn({navigation}) {
   return (
     <View style={{flex: 1, justifyContent: 'center'}}>
       <ImageBackground
@@ -78,39 +78,19 @@ export default function SignIn() {
             </Text>
             <TouchableOpacity
               style={{
-                position: 'absolute',
-                bottom: -10,
                 backgroundColor: '#0ed2ab',
                 width: 100,
                 alignItems: 'center',
                 borderRadius: 10,
                 paddingVertical: 5,
                 elevation: 10,
-              }}>
+              }}
+              onPress={() => navigation.navigate('Menu')}>
               <Text style={{color: 'white'}}>NEXT</Text>
             </TouchableOpacity>
           </View>
         </View>
       </ImageBackground>
-      <View
-        style={{
-          flex: 1.5,
-          justifyContent: 'center',
-          alignItems: 'center',
-          backgroundColor: '#0ed2ab',
-        }}>
-        <View
-          style={{
-            backgroundColor: '#fafafa',
-            width: 100,
-            height: 100,
-            position: 'absolute',
-            top: -50,
-            borderRadius: 100,
-            transform: [{scaleX: 5}, {scaleY: 2}],
-          }}></View>
-        <Text style={{color: 'white'}}>Reset Password</Text>
-      </View>
     </View>
   );
 }

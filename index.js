@@ -9,5 +9,6 @@ import Glints from './Glints';
 import {name as appName} from './app.json';
 import TodoApp from './TodoApp';
 import Main from './Main';
+import Route from './Route';
 
-AppRegistry.registerComponent(appName, () => TodoApp);
+AppRegistry.registerComponent(appName, () => Route);

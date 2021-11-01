@@ -10,7 +10,7 @@ import {
 import Card from './Card';
 import Kartu from './Kartu';
 
-export default function TodoApp() {
+export default function TodoApp({navigation}) {
   const [title, setTitle] = useState([
     {
       todo: 'Walking',
@@ -58,6 +58,9 @@ export default function TodoApp() {
           setDescription(e);
         }}
       />
+      <TouchableOpacity onPress={() => navigation.navigate('SignIn')}>
+        <Text>Logout</Text>
+      </TouchableOpacity>
       <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
         <TouchableOpacity
           onPress={() => {
