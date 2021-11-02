@@ -62,17 +62,9 @@ export default function Card({data}) {
             {data.title}
           </Text>
           <View style={{paddingVertical: 10}}>
-            <Text
-              style={{
-                color: '#fff',
-                fontWeight: 'bold',
-                fontSize: 15,
-                textAlign: 'justify',
-              }}>
-              {data.overview}
-            </Text>
+            <Text style={{color: 'white'}}>{data.overview}</Text>
           </View>
-          <Text>Popularity: {data.popularity}</Text>
+          <Text>Release: {data.release_date}</Text>
         </View>
       </View>
     </ImageBackground>

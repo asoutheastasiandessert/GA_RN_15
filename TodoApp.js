@@ -42,6 +42,7 @@ export default function TodoApp({navigation}) {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
+    // console.log('123');
     fetch(
       'https://api.themoviedb.org/3/movie/now_playing?api_key=570c36d75740509c00d865a804d826a5&language=en-US&page=1',
     )
@@ -50,7 +51,7 @@ export default function TodoApp({navigation}) {
         return e.json();
       })
       .then(e => {
-        console.log('e 2 ', e);
+        console.log('e 2', e);
         setMovies(e.results);
       });
   }, []);
@@ -63,20 +64,13 @@ export default function TodoApp({navigation}) {
         <Text>Logout</Text>
       </TouchableOpacity>
 
+      <TextInput value={todo} onChangeText={e => setTodo(e)} />
+
       <FlatList
         data={movies}
         style={{margin: 10}}
         numColumns={1}
-        // columnWrapperStyle={{flex: 1, justifyContent: 'space-between'}}
-        renderItem={data => (
-          <Card
-            data={data.item}
-            // deleteTodo={() => {
-            //   const qwe = title.filter((item, i) => data.index !== i);
-            //   setTitle(qwe);
-            // }}
-          />
-        )}
+        renderItem={data => <Card data={data.item} />}
         keyExtractor={(item, i) => i}
       />
       {/* <FlatList
