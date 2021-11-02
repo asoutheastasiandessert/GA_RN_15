@@ -1,5 +1,11 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, Image} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  ImageBackground,
+} from 'react-native';
 
 //destruction object
 
@@ -25,10 +31,11 @@ const color = [
   'silver',
 ];
 
-export default function Card({data, deleteTodo}) {
+export default function Card({data}) {
   console.log('data ', data);
   return (
-    <View
+    <ImageBackground
+      source={{uri: `https://image.tmdb.org/t/p/w500${data.poster_path}`}}
       style={{
         // backgroundColor: color[Math.floor(Math.random() * color.length)],
         backgroundColor: '#fafafa',
@@ -43,15 +50,6 @@ export default function Card({data, deleteTodo}) {
         borderRadius: 10,
         overflow: 'hidden',
       }}>
-      <View
-        style={{
-          justifyContent: 'center',
-          backgroundColor: 'orange',
-          width: 50,
-          alignItems: 'center',
-        }}>
-        <Image source={{uri: data.avatar}} style={{height: 40, width: 40}} />
-      </View>
       <View style={{flex: 1}}>
         <View>
           <Text
@@ -59,27 +57,24 @@ export default function Card({data, deleteTodo}) {
               color: 'white',
               backgroundColor: 'black',
               textAlign: 'center',
+              fontSize: 24,
             }}>
-            {data.todo}
+            {data.title}
           </Text>
           <View style={{paddingVertical: 10}}>
-            <Text style={{}}>{data.description}</Text>
+            <Text
+              style={{
+                color: '#fff',
+                fontWeight: 'bold',
+                fontSize: 15,
+                textAlign: 'justify',
+              }}>
+              {data.overview}
+            </Text>
           </View>
-          <Text>Status: {data.status}</Text>
+          <Text>Popularity: {data.popularity}</Text>
         </View>
       </View>
-
-      <TouchableOpacity
-        style={{
-          width: 50,
-          backgroundColor: 'yellow',
-          // paddingHorizontal: 5,
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-        onPress={() => deleteTodo()}>
-        <Text style={{color: 'black'}}>Delete</Text>
-      </TouchableOpacity>
-    </View>
+    </ImageBackground>
   );
 }

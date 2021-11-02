@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from 'react';
+import React, {useMemo, useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -39,107 +39,42 @@ export default function TodoApp({navigation}) {
   const [description, setDescription] = useState('');
   const [status, setStatus] = useState('');
   const [avatar, setAvatar] = useState('');
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    fetch(
+      'https://api.themoviedb.org/3/movie/now_playing?api_key=570c36d75740509c00d865a804d826a5&language=en-US&page=1',
+    )
+      .then(e => {
+        console.log('e 1 ', e);
+        return e.json();
+      })
+      .then(e => {
+        console.log('e 2 ', e);
+        setMovies(e.results);
+      });
+  }, []);
+
+  console.log('movies ', movies);
 
   return (
     <View>
-      <TextInput
-        style={{color: 'green'}}
-        placeholder="Type your Todo here"
-        value={todo}
-        onChangeText={e => {
-          setTodo(e);
-        }}
-      />
-      <TextInput
-        style={{color: 'green'}}
-        placeholder="Type your Description here"
-        value={description}
-        onChangeText={e => {
-          setDescription(e);
-        }}
-      />
       <TouchableOpacity onPress={() => navigation.navigate('SignIn')}>
         <Text>Logout</Text>
       </TouchableOpacity>
-      <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
-        <TouchableOpacity
-          onPress={() => {
-            setStatus('Completed');
-          }}
-          style={{
-            padding: 10,
-            backgroundColor: status == 'Completed' ? '#20cb9d' : '#fafafa',
-          }}>
-          <Text
-            style={{
-              color: status == 'Completed' ? 'white' : 'black',
-            }}>
-            Completed
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            setStatus('Open');
-          }}
-          style={{
-            padding: 10,
-            backgroundColor: status == 'Open' ? '#20cb9d' : '#fafafa',
-          }}>
-          <Text
-            style={{
-              color: status == 'Open' ? 'white' : 'black',
-            }}>
-            Open
-          </Text>
-        </TouchableOpacity>
-      </View>
-      <TextInput
-        style={{color: 'green'}}
-        placeholder="Type your Avatar here"
-        value={avatar}
-        onChangeText={e => {
-          setAvatar(e);
-        }}
-      />
-      <TouchableOpacity
-        onPress={() => {
-          if (
-            todo.length == 0 ||
-            description.length == 0 ||
-            status.length == 0 ||
-            avatar.length == 0
-          ) {
-            Alert.alert('Fill all data');
-          } else {
-            const asd = [...title]; // copy array sebelumnya
-            const newData = {
-              todo: todo,
-              description: description,
-              status: status,
-              avatar: avatar,
-            };
-            asd.push(newData); // tambahkan value ketikan ke array
-            setTitle(asd); // ganti value title dengan data baru
-            setTodo('');
-            setDescription('');
-            setStatus('');
-            setAvatar('');
-          }
-        }}>
-        <Text style={{fontSize: 24}}>Submit</Text>
-      </TouchableOpacity>
+
       <FlatList
-        data={title}
+        data={movies}
         style={{margin: 10}}
         numColumns={1}
         // columnWrapperStyle={{flex: 1, justifyContent: 'space-between'}}
         renderItem={data => (
           <Card
             data={data.item}
-            deleteTodo={() => {
-              const qwe = title.filter((item, i) => data.index !== i);
-              setTitle(qwe);
-            }}
+            // deleteTodo={() => {
+            //   const qwe = title.filter((item, i) => data.index !== i);
+            //   setTitle(qwe);
+            // }}
           />
         )}
         keyExtractor={(item, i) => i}
