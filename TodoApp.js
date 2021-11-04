@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, {useMemo, useState, useEffect} from 'react';
 import {
   View,
@@ -6,6 +7,7 @@ import {
   TextInput,
   FlatList,
   Alert,
+  ImageBackground,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import Card from './Card';
@@ -15,35 +17,56 @@ import {gantiNama} from './redux/action/UserAction';
 export default function TodoApp({navigation}) {
   const dispatch = useDispatch();
   const [ketikan, setKetikan] = useState('');
+  // const [todo, setTodo] = useState([
+  //   {name: 'rangga', age: 12},
+  //   {name: 'rangga', age: 12},
+  //   {name: 'rangga', age: 12},
+  // ]);
   const [todo, setTodo] = useState('');
   const [description, setDescription] = useState('');
   const [status, setStatus] = useState('');
   const [avatar, setAvatar] = useState('');
   const [movies, setMovies] = useState([]);
 
-  useEffect(() => {
-    // console.log('123');
-    fetch(
-      'https://api.themoviedb.org/3/movie/now_playing?api_key=570c36d75740509c00d865a804d826a5&language=en-US&page=1',
-    )
-      .then(async e => {
-        // console.log('e 1 ', e);
-        return e.json();
-      })
-      .then(e => {
-        // console.log('e 2 ', e);
-        setMovies(e.results);
-      });
-  }, []);
-
   const user = useSelector(state => state.user);
 
-  console.log('user ', user);
+  console.log('movies ', movies);
+
+  // useEffect(() => {
+  //   axios
+  //     .get(
+  //       'https://api.themoviedb.org/3/movie/now_playing?api_key=570c36d75740509c00d865a804d826a5&language=en-US&page=1',
+  //     )
+  //     .then(e => {
+  //       console.log('e 3', e);
+  //       setMovies(e.data.results);
+  //     });
+  // }, []);
 
   return (
     <View>
-      <TouchableOpacity onPress={() => navigation.navigate('SignIn')}>
-        <Text>Logout</Text>
+      <TouchableOpacity
+        onPress={() => {
+          fetch(
+            'https://api.themoviedb.org/3/movie/now_playing?api_key=570c36d75740509c00d865a804d826a5&language=en-US&page=1',
+          )
+            .then(e => {
+              console.log('e 1', e);
+              return e.json();
+            })
+            .then(e => {
+              console.log('e 2', e);
+            });
+          axios
+            .get(
+              'https://api.themoviedb.org/3/movie/now_playing?api_key=570c36d75740509c00d865a804d826a5&language=en-US&page=1',
+            )
+            .then(e => {
+              console.log('e 3', e);
+              setMovies(e.data.results);
+            });
+        }}>
+        <Text>GET MOVIE</Text>
       </TouchableOpacity>
 
       <Text>{user.name}</Text>
@@ -51,7 +74,7 @@ export default function TodoApp({navigation}) {
       <TextInput
         value={user.name}
         onChangeText={e => {
-          // setTodo(e)
+          setTodo(e);
           dispatch(gantiNama(e));
         }}
         placeholder="Nama"
@@ -61,7 +84,39 @@ export default function TodoApp({navigation}) {
         data={movies}
         style={{margin: 10}}
         numColumns={1}
-        renderItem={data => <Card data={data.item} />}
+        renderItem={data => {
+          console.log('data ', data);
+          return (
+            <ImageBackground
+              source={{
+                uri: `https://image.tmdb.org/t/p/w500${data.item.poster_path}`,
+              }}
+              style={{
+                marginBottom: 10,
+                borderWidth: 1,
+                borderRadius: 10,
+                padding: 10,
+              }}>
+              <Text
+                style={{
+                  color: 'white',
+                  fontWeight: 'bold',
+                  fontSize: 24,
+                  textAlign: 'center',
+                }}>
+                {data.item.title}
+              </Text>
+              <Text
+                style={{
+                  color: 'white',
+                  fontWeight: 'bold',
+                  textAlign: 'justify',
+                }}>
+                {data.item.overview}
+              </Text>
+            </ImageBackground>
+          );
+        }}
         keyExtractor={(item, i) => i}
       />
       {/* <FlatList
