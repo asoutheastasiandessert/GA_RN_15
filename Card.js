@@ -7,32 +7,8 @@ import {
   ImageBackground,
 } from 'react-native';
 
-//destruction object
-
-const color = [
-  'red',
-  'blue',
-  'green',
-  'orange',
-  'purple',
-  'brown',
-  'gray',
-  'violet',
-  'chartreuse',
-  'crimson',
-  'cyan',
-  'darkblue',
-  'indigo',
-  'khaki',
-  'tomato',
-  'tan',
-  'teal',
-  'skyblue',
-  'silver',
-];
-
 export default function Card({data}) {
-  console.log('data ', data);
+  // console.log('data ', data);
   return (
     <ImageBackground
       source={{uri: `https://image.tmdb.org/t/p/w500${data.poster_path}`}}

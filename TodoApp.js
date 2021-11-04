@@ -7,33 +7,13 @@ import {
   FlatList,
   Alert,
 } from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
 import Card from './Card';
 import Kartu from './Kartu';
+import {gantiNama} from './redux/action/UserAction';
 
 export default function TodoApp({navigation}) {
-  const [title, setTitle] = useState([
-    {
-      todo: 'Walking',
-      description: 'walk',
-      status: 'open',
-      avatar:
-        'https://cdn.icon-icons.com/icons2/2643/PNG/512/male_boy_person_people_avatar_icon_159358.png',
-    },
-    {
-      todo: 'Running',
-      description: 'run',
-      status: 'done',
-      avatar:
-        'https://cdn.iconscout.com/icon/free/png-256/avatar-373-456325.png',
-    },
-    {
-      todo: 'Sitting',
-      description: 'sit',
-      status: 'open',
-      avatar:
-        'https://cdn.iconscout.com/icon/free/png-256/boy-avatar-4-1129037.png',
-    },
-  ]);
+  const dispatch = useDispatch();
   const [ketikan, setKetikan] = useState('');
   const [todo, setTodo] = useState('');
   const [description, setDescription] = useState('');
@@ -46,17 +26,19 @@ export default function TodoApp({navigation}) {
     fetch(
       'https://api.themoviedb.org/3/movie/now_playing?api_key=570c36d75740509c00d865a804d826a5&language=en-US&page=1',
     )
-      .then(e => {
-        console.log('e 1 ', e);
+      .then(async e => {
+        // console.log('e 1 ', e);
         return e.json();
       })
       .then(e => {
-        console.log('e 2', e);
+        // console.log('e 2 ', e);
         setMovies(e.results);
       });
   }, []);
 
-  console.log('movies ', movies);
+  const user = useSelector(state => state.user);
+
+  console.log('user ', user);
 
   return (
     <View>
@@ -64,7 +46,16 @@ export default function TodoApp({navigation}) {
         <Text>Logout</Text>
       </TouchableOpacity>
 
-      <TextInput value={todo} onChangeText={e => setTodo(e)} />
+      <Text>{user.name}</Text>
+
+      <TextInput
+        value={user.name}
+        onChangeText={e => {
+          // setTodo(e)
+          dispatch(gantiNama(e));
+        }}
+        placeholder="Nama"
+      />
 
       <FlatList
         data={movies}
