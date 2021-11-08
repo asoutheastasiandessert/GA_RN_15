@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import {Image} from 'react-native';
-import TodoApp from './TodoApp';
+import Movie from './Movie';
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
@@ -16,6 +16,7 @@ import SignUp from './SignUp';
 import {Provider} from 'react-redux';
 import {store} from './redux/store';
 import {LogBox} from 'react-native';
+import DetailMovie from './DetailMovie';
 LogBox.ignoreLogs(['Reanimated 2']);
 
 const Drawer = createDrawerNavigator();
@@ -38,9 +39,27 @@ function MyDrawer() {
   return (
     <Drawer.Navigator
       drawerContent={props => <CustomDrawerContent {...props} />}>
-      <Drawer.Screen name="TodoApp" component={TodoApp} />
+      <Drawer.Screen name="Sign" component={SignIn} />
       <Drawer.Screen name="Test" component={Test} />
     </Drawer.Navigator>
+  );
+}
+
+function MovieStack() {
+  return (
+    <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Screen name="Movie" component={Movie} />
+      <Stack.Screen name="DetailMovie" component={DetailMovie} />
+    </Stack.Navigator>
+  );
+}
+
+function SearchStack() {
+  return (
+    <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Screen name="Search" component={Test} />
+      {/* <Stack.Screen name="SearchMovie" component={DetailMovie} /> */}
+    </Stack.Navigator>
   );
 }
 
@@ -49,8 +68,8 @@ function BottomTabs() {
     <Bottom.Navigator
       screenOptions={{headerShown: false}}
       initialRouteName="TodoApp">
-      <Bottom.Screen name="TodoApp" component={TodoApp} />
-      <Bottom.Screen name="Test" component={Test} />
+      <Bottom.Screen name="TodoApp" component={MovieStack} />
+      <Bottom.Screen name="Test" component={SearchStack} />
     </Bottom.Navigator>
   );
 }
@@ -58,9 +77,13 @@ function BottomTabs() {
 function Stacks() {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
+      {/* <Drawer.Screen name="MyDrawer" component={MyDrawer} /> */}
       <Stack.Screen name="SignIn" component={SignIn} />
       <Stack.Screen name="SignUp" component={SignUp} />
+      {/* <Stack.Screen name="DetailMovie" component={DetailMovie} /> */}
       <Stack.Screen name="Menu" component={BottomTabs} />
+      {/* <Stack.Screen name="SearchMovie" component={DetailMovie} /> */}
+      {/* <Stack.Screen name="DetailMovie" component={DetailMovie} /> */}
     </Stack.Navigator>
   );
 }
@@ -70,8 +93,8 @@ export default function Route() {
     <Provider store={store}>
       <NavigationContainer>
         {/* <BottomTabs /> */}
-        <MyDrawer />
-        {/* <Stacks /> */}
+        {/* <MyDrawer /> */}
+        <Stacks />
       </NavigationContainer>
     </Provider>
   );

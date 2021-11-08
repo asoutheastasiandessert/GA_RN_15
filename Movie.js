@@ -16,32 +16,9 @@ import {gantiNama} from './redux/action/UserAction';
 
 export default function TodoApp({navigation}) {
   const dispatch = useDispatch();
-  const [ketikan, setKetikan] = useState('');
-  // const [todo, setTodo] = useState([
-  //   {name: 'rangga', age: 12},
-  //   {name: 'rangga', age: 12},
-  //   {name: 'rangga', age: 12},
-  // ]);
-  const [todo, setTodo] = useState('');
-  const [description, setDescription] = useState('');
-  const [status, setStatus] = useState('');
-  const [avatar, setAvatar] = useState('');
   const [movies, setMovies] = useState([]);
 
   const user = useSelector(state => state.user);
-
-  console.log('movies ', movies);
-
-  // useEffect(() => {
-  //   axios
-  //     .get(
-  //       'https://api.themoviedb.org/3/movie/now_playing?api_key=570c36d75740509c00d865a804d826a5&language=en-US&page=1',
-  //     )
-  //     .then(e => {
-  //       console.log('e 3', e);
-  //       setMovies(e.data.results);
-  //     });
-  // }, []);
 
   return (
     <View>
@@ -69,17 +46,6 @@ export default function TodoApp({navigation}) {
         <Text>GET MOVIE</Text>
       </TouchableOpacity>
 
-      <Text>{user.name}</Text>
-
-      <TextInput
-        value={user.name}
-        onChangeText={e => {
-          setTodo(e);
-          dispatch(gantiNama(e));
-        }}
-        placeholder="Nama"
-      />
-
       <FlatList
         data={movies}
         style={{margin: 10}}
@@ -87,34 +53,15 @@ export default function TodoApp({navigation}) {
         renderItem={data => {
           console.log('data ', data);
           return (
-            <ImageBackground
-              source={{
-                uri: `https://image.tmdb.org/t/p/w500${data.item.poster_path}`,
-              }}
-              style={{
-                marginBottom: 10,
-                borderWidth: 1,
-                borderRadius: 10,
-                padding: 10,
-              }}>
-              <Text
-                style={{
-                  color: 'white',
-                  fontWeight: 'bold',
-                  fontSize: 24,
-                  textAlign: 'center',
-                }}>
-                {data.item.title}
-              </Text>
-              <Text
-                style={{
-                  color: 'white',
-                  fontWeight: 'bold',
-                  textAlign: 'justify',
-                }}>
-                {data.item.overview}
-              </Text>
-            </ImageBackground>
+            <View style={{marginBottom: 10}}>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate('DetailMovie', {movieId: data.item.id})
+                }>
+                <Text>{data.item.title}</Text>
+                <Text>{data.item.id}</Text>
+              </TouchableOpacity>
+            </View>
           );
         }}
         keyExtractor={(item, i) => i}
