@@ -3,6 +3,8 @@ const initialState = {
   age: 0,
   address: '',
   password: '',
+  movieId: '',
+  movie: [],
 };
 
 export default function UserReducer(state = initialState, action) {
@@ -26,6 +28,17 @@ export default function UserReducer(state = initialState, action) {
       return {
         ...state,
         password: action.payload,
+      };
+    case 'SIMPAN_MOVIE_ID':
+      return {
+        ...state,
+        movieId: action.payload,
+      };
+
+    case 'FETCH_MOVIE':
+      return {
+        ...state,
+        movie: action.payload,
       };
 
     default:

@@ -12,7 +12,10 @@ import {
 import {useDispatch, useSelector} from 'react-redux';
 import Card from './Card';
 import Kartu from './Kartu';
-import {gantiNama} from './redux/action/UserAction';
+import {fetchMovie, gantiNama, simpanMovieId} from './redux/action/UserAction';
+import {fetchMovie2} from './redux/action/asd';
+import SelectDropdown from 'react-native-select-dropdown';
+const countries = ['Egypt', 'Canada', 'Australia', 'Ireland'];
 
 export default function TodoApp({navigation}) {
   const dispatch = useDispatch();
@@ -20,29 +23,14 @@ export default function TodoApp({navigation}) {
 
   const user = useSelector(state => state.user);
 
+  useEffect(() => {
+    dispatch(fetchMovie());
+  }, []);
+
+  console.log('user ', user);
   return (
     <View>
-      <TouchableOpacity
-        onPress={() => {
-          fetch(
-            'https://api.themoviedb.org/3/movie/now_playing?api_key=570c36d75740509c00d865a804d826a5&language=en-US&page=1',
-          )
-            .then(e => {
-              console.log('e 1', e);
-              return e.json();
-            })
-            .then(e => {
-              console.log('e 2', e);
-            });
-          axios
-            .get(
-              'https://api.themoviedb.org/3/movie/now_playing?api_key=570c36d75740509c00d865a804d826a5&language=en-US&page=1',
-            )
-            .then(e => {
-              console.log('e 3', e);
-              setMovies(e.data.results);
-            });
-        }}>
+      <TouchableOpacity onPress={() => {}}>
         <Text>GET MOVIE</Text>
       </TouchableOpacity>
 
@@ -55,9 +43,10 @@ export default function TodoApp({navigation}) {
           return (
             <View style={{marginBottom: 10}}>
               <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate('DetailMovie', {movieId: data.item.id})
-                }>
+                onPress={() => {
+                  navigation.navigate('DetailMovie', {movieId: data.item.id});
+                  dispatch(simpanMovieId(data.item.id));
+                }}>
                 <Text>{data.item.title}</Text>
                 <Text>{data.item.id}</Text>
               </TouchableOpacity>
@@ -66,6 +55,7 @@ export default function TodoApp({navigation}) {
         }}
         keyExtractor={(item, i) => i}
       />
+
       {/* <FlatList
         data={title}
         numColumns={2}

@@ -1,17 +1,19 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, ActivityIndicator} from 'react-native';
 import axios from 'axios';
+import {useSelector} from 'react-redux';
 
 export default function DetailMovie(props) {
-  console.log('props ', props);
+  // console.log('props ', props);
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  const user = useSelector(state => state.user);
+  console.log('user ', props.route.params.movieId);
   useEffect(() => {
     axios
       .get(
         'https://api.themoviedb.org/3/movie/' +
-          props.route.params.movieId +
+          user.movieId +
           '?api_key=570c36d75740509c00d865a804d826a5&language=en-US',
       )
       .then(e => {
